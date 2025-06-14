@@ -86,6 +86,6 @@ loginBtn.addEventListener("click", (e) => {
 
   // Redirect to dashboard after short delay
   setTimeout(() => {
-    window.location.href = "librarianDashboard.html"; // <-- change this to your dashboard file
+    window.location.href = "studentDashboard.html"; // <-- change this to your dashboard file
   }, 500); // 0.5 second delay
 });
