@@ -8,13 +8,13 @@
   <meta name="theme-color" content="#FFFFFF">
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome for icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="studentDashboard.css"/>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
 
-  <!-- Mobile Topbar -->
+  <!-- ✅ Mobile Topbar -->
   <header class="top-nav flex justify-between items-center px-4 py-2 bg-[#18354a] text-white shadow md:hidden fixed top-0 left-0 right-0 z-50">
     <button id="hamburger" class="text-2xl">
       <i class="fas fa-bars"></i>
@@ -23,99 +23,82 @@
       <i class="fas fa-book-open text-xl"></i>
       <span class="font-bold">LibraNet</span>
     </div>
-    
     <div class="flex items-center space-x-4">
       <button class="install-btn p-2 bg-[#18354a] text-white rounded-full hover:bg-[#415977] transition">
-       <i class="fa-solid fa-download"></i>
+        <i class="fa-solid fa-download"></i>
       </button>
       <i class="fas fa-bell"></i>
       <i class="fas fa-user-circle"></i>
     </div>
   </header>
 
-
-  <!-- Desktop topbar -->
-  <header class="top-nav">
+  <!-- ✅ Desktop Topbar -->
+  <header class="top-nav hidden md:flex justify-between items-center px-6 py-4 bg-[#18354a] text-white shadow fixed top-0 left-0 right-0 z-50">
     <div class="flex items-center space-x-4">
       <i class="fas fa-book-open text-2xl"></i>
       <span class="text-xl font-bold">LibraNet</span>
     </div>
     <nav class="space-x-6">
-      <a href="#" class="text-gray-400"><i class="fas fa-bell"></i> Notifications</a>
-      <a href="#"><i class="fas fa-user-circle"></i> Login</a>
+      <a href="#" class="text-gray-300 hover:underline"><i class="fas fa-bell"></i> Notifications</a>
+      <a href="#" class="hover:underline"><i class="fas fa-user-circle"></i> Login</a>
     </nav>
   </header>
-  
 
-
-
-    <!-- Sidebar -->
-  <aside class="side-nav">
-    <div></div> <!-- Placeholder for top items (if any) -->
-    <div class="mt-auto mb-2 ml-0.3">
-      <a href="#" class="flex items-center gap-2 text-white">
-        <i class="fas fa-question-circle"></i>
-        Help & Support
+  <!-- ✅ Sidebar (Desktop only) -->
+  <aside class="side-nav hidden md:flex flex-col bg-[#61584D] text-white w-60 min-h-screen fixed top-[64px] left-0 p-4">
+    <div class="mt-auto mb-4">
+      <a href="#" class="flex items-center gap-2 text-white hover:underline">
+        <i class="fas fa-question-circle"></i> Help & Support
       </a>
     </div>
   </aside>
 
-<!-- Main Content -->
-<main class="main-content flex justify-center items-start min-h-[calc(100vh-6rem)] pt-6">
-  <div class="login-box">
-    <h2 class="text-center text-2xl font-semibold mb-12">Login as a Librarian</h2>
+  <!-- ✅ Main Content -->
+  <main class="main-content flex justify-center items-start w-full pt-20 md:pt-24 px-4 md:ml-60">
+    <div class="login-box w-full max-w-lg bg-white shadow-md p-6 rounded-lg">
+      <h2 class="text-center text-2xl font-semibold mb-8">Login as a Librarian</h2>
 
+      <!-- Email input -->
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <input type="text" id="email" placeholder="example@Libranet.ac.ae" class="w-full px-4 py-2 border border-gray-300 rounded" />
+        <p id="emailError" class="text-sm text-red-500 mt-1 hidden">Please enter a valid email.</p>
+      </div>
 
+      <!-- Password input -->
+      <div class="mb-6 relative">
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <input type="password" id="password" placeholder="Enter password" class="w-full px-4 py-2 border border-gray-300 rounded pr-10" />
+        <button type="button" id="togglePassword" class="absolute right-3 top-9 text-gray-500">
+          <i class="fas fa-eye"></i>
+        </button>
+        <p id="passwordError" class="text-sm text-red-500 mt-1 hidden">Password must be at least 8 characters.</p>
+      </div>
 
-<!-- Email input -->
-<div class="flex flex-col mb-4 w-full max-w-[650px]">
-  <div class="flex items-center">
-    <label for="email" class="label">Email:</label>
-    <input type="text" id="email" placeholder="example@Libranet.ac.ae" class="input-field" />
-  </div>
-  <p id="emailError" class="text-sm text-red-500 ml-[110px] mt-1 hidden">
-    Please enter a valid email.
-  </p>
-</div>
+      <!-- Remember me + Forgot -->
+      <div class="flex flex-col md:flex-row justify-between items-center text-sm mb-6 gap-3">
+        <label class="flex items-center gap-2">
+          <input type="checkbox" /> Remember me
+        </label>
+        <a href="#" class="text-blue-600 hover:underline">Forgot Password?</a>
+      </div>
 
-<!-- Password input -->
-<div class="flex flex-col mb-8 w-full max-w-[650px]">
-  <div class="flex items-center relative">
-    <label for="password" class="label">Password:</label>
-    <input type="password" id="password" placeholder="Enter password" class="input-field pr-10" />
-    <button type="button" id="togglePassword">
-      <i class="fas fa-eye"></i>
-    </button>
-  </div>
-  <p id="passwordError" class="text-sm text-red-500 ml-[110px] mt-1 hidden">
-    Password must be at least 8 characters.
-  </p>
-</div>
+      <!-- Login Button -->
+      <div class="text-center mb-4">
+        <button id="loginBtn" disabled class="bg-gray-400 text-white py-2 px-6 rounded cursor-not-allowed">Login</button>
+      </div>
 
-
-
-    <div class="flex justify-between items-center text-base mb-10 pl-[110px] pr-2 mt-4">
-      <label class="flex items-center gap-2">
-        <input type="checkbox" /> Remember me
-      </label>
-      <a href="#" class="link-btn text-base">Forgot Password?</a>
+      <!-- Signup link -->
+      <p class="text-center text-sm">
+        Don’t have an account? <a href="#" class="text-blue-600 hover:underline">Sign up!</a>
+      </p>
     </div>
+  </main>
 
-    <div class="text-center mb-10 pl-16">
-      <button id="loginBtn" disabled class="btn-disabled">Login</button>
-    </div>
-
-    <p class="text-center text-base pl-16">
-      Don’t have an account? <a href="#" class="link-btn">Sign up!</a>
-    </p>
-  </div>
-</main>
-
-
-
-  <!-- External JS -->
+  <!-- JS -->
   <script src="studentDashboard.js"></script>
 </body>
 </html>
+
 
 
